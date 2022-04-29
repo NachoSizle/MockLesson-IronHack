@@ -7,7 +7,16 @@ export default {
   name: 'MyButton',
   props: {
     name: String,
-    bgColor: String,
+    bgColor: {
+      type: String,
+      required: true,
+      default() {
+        return '#ffffff';
+      },
+      validator(value) {
+        return value.includes('#');
+      },
+    },
   },
 };
 </script>

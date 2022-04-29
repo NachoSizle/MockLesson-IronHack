@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Now, render {{ numOfSquares }} squares!</h3>
-     <div class="container--squares">
+     <div :class="['container--squares', isHidden ? 'is-hidden' : '']">
       <div class="square"
         v-for="(color, index) in bgColors"
         :key="color"
@@ -22,7 +22,11 @@ export default {
       default() {
         return ['green', 'blue'];
       },
+      validator(value) {
+        return value.includes('blue');
+      },
     },
+    isHidden: Boolean,
   },
   computed: {
     numOfSquares() {
@@ -41,6 +45,10 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
+  }
+
+  .container--squares.is-hidden {
+    display: none;
   }
 
   .square {
